@@ -27,3 +27,18 @@ def generate_password(length=12, use_upper=True, use_lower=True, use_digits=True
     
     password = ''.join(random.choice(characters) for _ in range(length))
     return password
+
+if __name__ == "__main__":
+    try:
+        length = int(input("Şifre uzunluğunu girin: "))
+        if length <= 0:
+            raise ValueError("Şifre uzunluğu pozitif bir sayı olmalıdır!")
+        
+        use_upper = input("Büyük harf kullanılsın mı? (E/H): ").strip().lower() == 'e'
+        use_lower = input("Küçük harf kullanılsın mı? (E/H): ").strip().lower() == 'e'
+        use_digits = input("Rakam kullanılsın mı? (E/H): ").strip().lower() == 'e'
+        use_special = input("Özel karakter kullanılsın mı? (E/H): ").strip().lower() == 'e'
+        
+        print("Oluşturulan şifre:", generate_password(length, use_upper, use_lower, use_digits, use_special))
+    except ValueError as e:
+        print("Hata:", e)
